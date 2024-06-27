@@ -1,41 +1,10 @@
-import { formatDate } from "@/lib/format";
+"use client";
+import { useOptimistic } from "react";
 
-import LikeButton from "./like-icon";
-import { togglePostLike } from "./action";
-
-function Post({ post }) {
-  return (
-    <article className="post">
-      <div className="post-image">
-        <img src={post.image} alt={post.title} />
-      </div>
-      <div className="post-content">
-        <header>
-          <div>
-            <h2>{post.title}</h2>
-            <p>
-              Shared by {post.userFirstName} on{" "}
-              <time dateTime={post.createdAt}>
-                {formatDate(post.createdAt)}
-              </time>
-            </p>
-          </div>
-          <div>
-            <form
-              action={togglePostLike.bind(null, post.id)}
-              className={post.isLiked ? "liked" : undefined}
-            >
-              <LikeButton />
-            </form>
-          </div>
-        </header>
-        <p>{post.content}</p>
-      </div>
-    </article>
-  );
-}
+import { Post } from "./post";
 
 export default function Posts({ posts }) {
+  useOptimistic();
   if (!posts || posts.length === 0) {
     return <p>There are no posts yet. Maybe start sharing some?</p>;
   }
