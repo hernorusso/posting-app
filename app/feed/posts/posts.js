@@ -1,5 +1,7 @@
 import { formatDate } from "@/lib/format";
+
 import LikeButton from "./like-icon";
+import { togglePostLike } from "./action";
 
 function Post({ post }) {
   return (
@@ -19,7 +21,10 @@ function Post({ post }) {
             </p>
           </div>
           <div>
-            <form>
+            <form
+              action={togglePostLike.bind(null, post.id)}
+              className={post.isLiked ? "liked" : undefined}
+            >
               <LikeButton />
             </form>
           </div>
