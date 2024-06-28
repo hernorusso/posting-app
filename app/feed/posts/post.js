@@ -1,9 +1,8 @@
 import { formatDate } from "@/lib/format";
 
 import LikeButton from "./like-icon";
-import { togglePostLike } from "./action";
 
-const Post = ({ post }) => {
+const Post = ({ post, action }) => {
   return (
     <article className="post">
       <div className="post-image">
@@ -22,7 +21,7 @@ const Post = ({ post }) => {
           </div>
           <div>
             <form
-              action={togglePostLike.bind(null, post.id)}
+              action={action.bind(null, post.id)}
               className={post.isLiked ? "liked" : undefined}
             >
               <LikeButton />
