@@ -1,5 +1,6 @@
 "use server";
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 import { storePost } from "@/lib/posts";
 import { uploadImage } from "@/lib/cloudinary";
@@ -40,7 +41,7 @@ const createPost = async (prevState, formData) => {
     content,
     userId: 1,
   });
-
+  revalidatePath("/", "layout");
   redirect("/feed");
 };
 
