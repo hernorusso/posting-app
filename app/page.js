@@ -4,6 +4,11 @@ import { getPosts } from "@/lib/posts";
 
 import { Posts } from "./posts";
 
+export const metadata = {
+  title: "Latest Post",
+  description: "Browse our latest post!",
+};
+
 async function LatestPosts() {
   const latestPosts = await getPosts(2);
   return <Posts posts={latestPosts} />;
